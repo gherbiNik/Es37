@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
-
 package com.mycompany.es37;
 
 /**
@@ -20,42 +19,63 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Es37 {
-   
-    
-    
-    public static boolean check_operatore(String operatore, String esame, Analisi[] analisi) throws IOException { 
-        for (Analisi a : analisi) 
-        {
-            if (a.getNome().equals(esame)) 
-            {
-                for (int i=0; i<a.getStrumenti().size(); i++) 
-                {
-                    if (a.getStrumenti().get(i).getOperatoriAbilitati().contains(operatore)) 
-                        return true;             
+
+    public static void check_strumento(ArrayList<Integer> strumenti, String esame, Analisi[] analisi) throws IOException {
+        ArrayList<Integer> temp = new ArrayList<Integer>(); //contiene strumenti letti da file
+
+        for (Analisi a : analisi) {
+            if (a.getNome().equals(esame)) {
+                for (int i = 0; i < a.getStrumenti().size(); i++) {
+                    temp.add(a.getStrumenti().get(i).getMatricola());
+                }
+            }
+        }
+        Collections.sort(temp);
+        Collections.sort(strumenti);
+
+        if (strumenti.equals(temp)) {
+            System.out.print("Tutti gli strumenti utilizzati sono consentiti!");
+        } else {
+            System.out.print("Strumenti non consentiti:\n");
+            for (Integer code : strumenti) {
+                if (!temp.contains(code)) {
+                    System.out.println(code);
+                }
+
+            }
+        }
+    }
+
+    public static boolean check_operatore(String operatore, String esame, Analisi[] analisi) throws IOException {
+        for (Analisi a : analisi) {
+            if (a.getNome().equals(esame)) {
+                for (int i = 0; i < a.getStrumenti().size(); i++) {
+                    if (a.getStrumenti().get(i).getOperatoriAbilitati().contains(operatore)) {
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
-   //fare chekc sulla data
-   
+    //fare chekc sulla data
+
     public static boolean check_data(String data_analisi, String data_prelievo, String esame, Analisi[] analisi) throws IOException, ParseException {
         LocalDate dA = LocalDate.parse(data_analisi);
         LocalDate dP = LocalDate.parse(data_prelievo);
-        
-        for (Analisi a : analisi) 
-        {
-            if (a.getNome().equals(esame)) 
-            {
-                long diff = ChronoUnit.DAYS.between(dP, dA);               
-                if ((int) diff<a.getTempoDopoP())
-                    return true;      
+
+        for (Analisi a : analisi) {
+            if (a.getNome().equals(esame)) {
+                long diff = ChronoUnit.DAYS.between(dP, dA);
+                if ((int) diff < a.getTempoDopoP()) {
+                    return true;
+                }
             }
         }
         return false;
     }
-    
-    public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+
+   public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
         ArrayList<String> lista_op = new ArrayList<String>();
         ArrayList<String> operatoreEsami = new ArrayList<String>();    
         ArrayList<Integer> strumenti = new ArrayList<Integer>();
@@ -125,7 +145,8 @@ public class Es37 {
             { 
                 strumenti.add(esito.getEsami().get(i).getStrumenti().get(j));
             }
-            
+            check_strumento(strumenti, esito.getEsami().get(i).getDenominazione(), analisi);
+            strumenti.clear();
             
             System.out.println("\nValore degli esami: ");
             if (esito.getEsami().get(i).getValore() < esito.getEsami().get(i).getMax() && esito.getEsami().get(i).getValore() > esito.getEsami().get(i).getMin()) 
