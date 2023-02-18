@@ -1,0 +1,40 @@
+{
+  "nome": "Nicholas",
+  "cognome": "Gherbi",
+  "codice_fiscale": "AB1205MF13DN45TT",
+  "sesso": "Maschio",
+  "eta": 18,
+  "dataPrelievo": "2022-12-12",
+  "oraPrelievo": "12:00",
+  "luogoPrelievo": "ambulanza",
+  "esami": [
+    {
+      "denominazione": "Esame01",
+      "data": "2022-01-01",
+      "ora": "21:00",
+      "codiceOperatore": "123456789",
+      "strumenti": [
+        1,
+        8
+      ],
+      "valore": -12,
+      "unitaMisura": "mg/dL",
+      "valoreMinimo": 0,
+      "valoreMassimo": 50
+    },
+    {
+      "denominazione": "Esame02",
+      "data": "2022-04-04",
+      "ora": "19:59",
+      "codiceOperatore": "44444444",
+      "strumenti": [
+        10,
+        11
+      ],
+      "valore": 999,
+      "unitaMisura": "mg/dL",
+      "valoreMinimo": 50,
+      "valoreMassimo": 100
+    }
+  ]
+}

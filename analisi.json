@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "Esame01",
+    "TdopoPrelievo": 8,
+    "strumenti": [
+      {
+        "matricola": 8,
+        "operatoriAbilitati": [
+          "123456789",
+          "333111333"
+        ]
+      },
+      {
+        "matricola": 1,
+        "operatoriAbilitati": [
+          "123456789",
+          "888888888"
+        ]
+      }
+    ]
+  },
+
+
+  {
+    "nome": "Esame02",
+    "TdopoPrelievo": 30,
+    "strumenti": [
+      {
+        "matricola": 3,
+        "operatoriAbilitati": [
+          "123456789",
+          "333111333",
+          "888888888"
+        ]
+      }
+    ]
+  }
+]
